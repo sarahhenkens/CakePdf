@@ -52,6 +52,20 @@ class CakePdf {
  */
 	protected $_engineName = null;
 
+ /**
+  * Page size of the document
+  *
+  * @var string
+  */
+	protected $_pageSize = 'A4';
+
+ /**
+  * Page orientation of the document
+  *
+  * @var string
+  */
+	protected $_pageOrientation = 'portrait';
+
 /**
  * Instance of PdfEngine class
  *
@@ -73,6 +87,7 @@ class CakePdf {
 		if (!$content) {
 			$content = $this->_render();
 		}
+		$this->_setOptions();
 		return $this->engine()->output($content);
 	}
 
@@ -204,6 +219,20 @@ class CakePdf {
 		$View->view = $this->_template;
 		$View->layout = $this->_layout;
 		return $View->render();
+	}
+
+/**
+ * Sets the options for the renderer
+ *
+ * @return array The rendered template wrapped in layout.
+ */
+	protected function _setOptions() {
+		$engine = $this->engine();
+
+		$engine->setPageSize($this->_pageSize);
+		$engine->setorientation($this->_pageOrientation);
+
+		return;
 	}
 
 }

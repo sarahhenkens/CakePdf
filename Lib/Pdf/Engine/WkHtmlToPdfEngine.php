@@ -34,6 +34,14 @@ class WkHtmlToPdfEngine extends AbstractPdfEngine {
 		}
 	}
 
+	public function setPageSize($pageSize) {
+		$this->options['pageSize'] = $pageSize;
+	}
+
+	public function setOrientation($orientation) {
+		$this->options['orientation'] = $orientation;
+	}
+
 	public function output($html) {
 
 		return $this->_renderPdf($html);
